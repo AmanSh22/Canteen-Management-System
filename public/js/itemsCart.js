@@ -30,6 +30,7 @@ const increase = (itemNumber) => {
 
 
 
+
 let arr = [];
 
 function addDish(element) {
