@@ -6,4 +6,5 @@ module.exports = {
   prod: {
     database: process.env.DATABASE,
     },
+  
 };
