@@ -41,7 +41,7 @@ module.exports = {
                 newUser.save()
                 .then((user)=>{
                 console.log(user)
-                res.redirect("/") // go to signIn page 
+                res.redirect("/login") // go to signIn page 
                 })
             } else {
                 // res.send(doc)
@@ -87,6 +87,15 @@ module.exports = {
 
     // POST REQ. UPDATE PROFILE INFORMATION ( CRUCIAL WHEN UPDATING USERNAME OR PASSWORD )
     updateProfile : (req, res)=>{
+        const username = req.params.username
+        const firstname = req.body.firstname
+        const lastname = req.body.lastname
+        const phone = req.body.phone
 
+        console.log(req.body)
+        User.findOneAndUpdate({_id: username}, {firstname:firstname, lastname: lastname, phone: phone}, {upsert: true}, function(err, doc) {
+            if (err) return res.send(500, {error: err});
+            return res.redirect('/profile')
+        });
     }
 }
